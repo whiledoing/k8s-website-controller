@@ -1,5 +1,5 @@
 {
-  "apiVersion": "extensions/v1beta1",
+  "apiVersion": "apps/v1",
   "kind": "Deployment",
   "metadata": {
     "name": "[NAME]",
@@ -9,9 +9,13 @@
   },
   "spec": {
     "replicas": 1,
+    "selector": {
+      "matchLabels": {
+          "webserver": "[NAME]"
+      }
+    },
     "template": {
       "metadata": {
-        "name": "[NAME]",
         "labels": {
           "webserver": "[NAME]"
         }
@@ -71,9 +75,7 @@
         "volumes": [
           {
             "name": "html",
-            "emptyDir": {
-              "medium": ""
-            }
+            "emptyDir": {}
           }
         ]
       }
